@@ -59,7 +59,14 @@
                     nonInteractive:false
                 };
                 args = $.extend(defaultArgs,args);
-                _gaq.push(['_trackEvent', args.category, args.action, args.label, args.value, args.nonInteractive]);
+                
+                // Using Google Tag manager API instead of Google Analytics
+                // Need to have 'event' contains 'tracked' as a rule in GTM for this to work.
+                // TODO: Add value & nonInteractive arguments in here... personally don't use these, so not currently an issue 
+                dataLayer.push({'event': 'tracked','category': args.category,'action': args.action,'label': args.label});
+                
+                
+                //_gaq.push(['_trackEvent', args.category, args.action, args.label, args.value, args.nonInteractive]);
             }
         }
     });
